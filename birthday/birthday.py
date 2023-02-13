@@ -9,6 +9,8 @@ Bonus: Ask the user for another scientist’s name and birthday to add to the
 dictionary, and update the JSON file you have on disk with the scientist’s name. 
 If you run the program multiple times and keep adding new names, your JSON 
 file should keep getting bigger and bigger.
+
+https://www.practicepython.org/exercise/2017/02/06/34-birthday-json.html
 """
 
 import json
