@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Prints a table of network devices from the DNAC always-on sandbox.
+"""
+
 from pprint import pprint
 
 import env_lab
@@ -21,6 +25,6 @@ def list_dnac_devices(host: str, token: str):
 if __name__ == "__main__":
     token = get_auth_token(**env_lab.dnac)
     devices = list_dnac_devices(env_lab.dnac["host"], token)
-    columns = ["hostname", "family", "type", "softwareType", "softwareVersion"]
+    columns = ("hostname", "family", "type", "managementIpAddress", "id")
     table = [{c: d[c] for c in columns} for d in devices]
     print(tabulate(table, headers="keys"))
