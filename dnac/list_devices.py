@@ -2,8 +2,10 @@
 
 from pprint import pprint
 
+import env_lab
 import requests
 from dnac_token import get_auth_token
+from tabulate import tabulate
 
 requests.packages.urllib3.disable_warnings()
 
@@ -13,14 +15,12 @@ def list_dnac_devices(host: str, token: str):
     headers = {"X-Auth-Token": token, "Accept": "application/json"}
     response = requests.get(url, headers=headers, verify=False)
     response.raise_for_status()
-    return response.json()
+    return response.json()["response"]
 
 
 if __name__ == "__main__":
-    dnac = {
-        "host": "sandboxdnac.cisco.com",
-        "username": "devnetuser",
-        "password": "Cisco123!",
-    }
-    token = get_auth_token(**dnac)
-    pprint(list_dnac_devices(dnac["host"], token))
+    token = get_auth_token(**env_lab.dnac)
+    devices = list_dnac_devices(env_lab.dnac["host"], token)
+    columns = ["hostname", "family", "type", "softwareType", "softwareVersion"]
+    table = [{c: d[c] for c in columns} for d in devices]
+    print(tabulate(table, headers="keys"))

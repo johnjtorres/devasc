@@ -5,6 +5,7 @@ An example script that retrieves an authentication token from DNA Center. This
 token can be used in future API requests.
 """
 
+import env_lab
 import requests
 
 requests.packages.urllib3.disable_warnings()
@@ -21,9 +22,4 @@ def get_auth_token(host: str, username: str, password: str) -> str:
 
 
 if __name__ == "__main__":
-    dnac = {
-        "host": "sandboxdnac.cisco.com",
-        "username": "devnetuser",
-        "password": "Cisco123!",
-    }
-    print(get_auth_token(**dnac))
+    print(get_auth_token(**env_lab.dnac))
