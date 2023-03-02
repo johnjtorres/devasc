@@ -4,7 +4,6 @@
 Prints a table of network devices from the DNAC always-on sandbox.
 """
 
-from pprint import pprint
 
 import env_lab
 import requests
