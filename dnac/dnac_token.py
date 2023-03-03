@@ -1,16 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-"""DevNet LL - DNA Center Authentication.
-
-An example script that retrieves an authentication token from DNA Center.
-This token can be used in future API requests.
-"""
+"""DevNet LL - Retrieve a token from DNA Center."""
 
 import env_lab
 import requests
 import urllib3
+from urllib3.exceptions import InsecureRequestWarning
 
-urllib3.disable_warnings()
+urllib3.disable_warnings(InsecureRequestWarning)
 
 
 def get_auth_token(host: str, username: str, password: str) -> str:
